@@ -8,6 +8,7 @@ export class categories extends Component {
   static propTypes = {
     categories: PropTypes.array.isRequired,
     getcategories: PropTypes.func.isRequired,
+    editcategory: PropTypes.func.isRequired,
     deletecategory: PropTypes.func.isRequired,
   };
 
