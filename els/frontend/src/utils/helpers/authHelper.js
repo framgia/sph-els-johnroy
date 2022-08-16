@@ -1,4 +1,5 @@
 import CONFIG from '../const';
+
 // Setup config with token - helper function
 export const tokenConfig = (getState) => {
   // Get token from state
