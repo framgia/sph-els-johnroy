@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { returnErrors } from './messages';
+import config from '../utils/const';
+// import tokenConfig from '../utils/helpers/authHelper';
 
 import {
   USER_LOADED,
@@ -36,11 +38,9 @@ export const loadUser = () => (dispatch, getState) => {
 // LOGIN USER
 export const login = (username, password) => (dispatch) => {
   // Headers
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
+  {
+    config;
+  }
 
   // Request Body
   const body = JSON.stringify({ username, password });
@@ -64,11 +64,9 @@ export const login = (username, password) => (dispatch) => {
 // REGISTER USER
 export const register = ({ username, password, email }) => (dispatch) => {
   // Headers
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
+  {
+    config;
+  }
 
   // Request Body
   const body = JSON.stringify({ username, email, password });
@@ -106,20 +104,5 @@ export const logout = () => (dispatch, getState) => {
 
 // Setup config with token - helper function
 export const tokenConfig = (getState) => {
-  // Get token from state
-  const token = getState().auth.token;
-
-  // Headers
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-
-  // If token, add to headers config
-  if (token) {
-    config.headers['Authorization'] = `Token ${token}`;
-  }
-
-  return config;
+  tokenConfig;
 };
