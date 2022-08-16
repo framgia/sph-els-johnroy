@@ -102,7 +102,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!************************************************!*\
   !*** ./els/frontend/src/actions/categories.js ***!
   \************************************************/
-/*! exports provided: getcategories, deletecategory, addcategory */
+/*! exports provided: getcategories, deletecategory, addcategory, editcategory */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
