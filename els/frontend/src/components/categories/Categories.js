@@ -2,14 +2,11 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getcategories, deletecategory } from '../../actions/categories';
-import { Link } from 'react-router-dom';
 
 export class categories extends Component {
   static propTypes = {
     categories: PropTypes.array.isRequired,
     getcategories: PropTypes.func.isRequired,
-    editcategory: PropTypes.func.isRequired,
-    editcategory: PropTypes.func.isRequired,
     deletecategory: PropTypes.func.isRequired,
   };
 
@@ -42,7 +39,7 @@ export class categories extends Component {
                 <td className="d-flex align-items-center">
                   <button className="btn btn-danger btn-sm"> Add Word</button>
                   <button
-                    //TODO: onClick={this.props.editcategory.bind(this, category.id)}
+                    // onClick={this.props.editcategory.bind(this, category.id)}
                     className="btn btn-danger btn-sm"
                   >
                     {' '}
@@ -70,6 +67,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getcategories, deletecategory })(
-  
   categories,
 );
