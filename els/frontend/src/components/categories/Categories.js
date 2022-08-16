@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getcategories, deletecategory } from '../../actions/categories';
+import { getcategories, editcategory, deletecategory } from '../../actions/categories';
 
 export class categories extends Component {
   static propTypes = {
     categories: PropTypes.array.isRequired,
     getcategories: PropTypes.func.isRequired,
+    editcategory: PropTypes.func.isRequired,
     deletecategory: PropTypes.func.isRequired,
   };
 
@@ -21,9 +22,7 @@ export class categories extends Component {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th>ID</th>
               <th>Name</th>
-              <th>Email</th>
               <th>Message</th>
               <th />
             </tr>
@@ -31,11 +30,17 @@ export class categories extends Component {
           <tbody>
             {this.props.categories.map((category) => (
               <tr key={category.id}>
-                <td>{category.id}</td>
                 <td>{category.name}</td>
-                <td>{category.email}</td>
                 <td>{category.message}</td>
-                <td>
+                <td className="d-flex align-items-center">
+                  <button className="btn btn-danger btn-sm"> Add Word</button>
+                  <button
+                    // onClick={this.props.editcategory.bind(this, category.id)}
+                    className="btn btn-danger btn-sm"
+                  >
+                    {' '}
+                    Edit
+                  </button>
                   <button
                     onClick={this.props.deletecategory.bind(this, category.id)}
                     className="btn btn-danger btn-sm"
@@ -57,4 +62,6 @@ const mapStateToProps = (state) => ({
   categories: state.categories.categories,
 });
 
-export default connect(mapStateToProps, { getcategories, deletecategory })(categories);
+export default connect(mapStateToProps, { getcategories, editcategory, deletecategory })(
+  categories,
+);
