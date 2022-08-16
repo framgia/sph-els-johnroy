@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createMessage, returnErrors } from './messages';
-import { tokenConfig } from './auth';
+import { tokenConfig } from '../utils/helpers/authHelper';
 
 import { GET_categories, DELETE_category, ADD_category } from './types';
 

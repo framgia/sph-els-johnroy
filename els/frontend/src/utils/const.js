@@ -1,7 +1,7 @@
-const config = {
+const CONFIG = {
   headers: {
     'Content-Type': 'application/json',
   },
 };
 
-export default config;
+export default CONFIG;

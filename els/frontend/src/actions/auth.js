@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { returnErrors } from './messages';
-import config from '../utils/const';
-// import tokenConfig from '../utils/helpers/authHelper';
+import CONFIG from '../utils/const';
+import { tokenConfig } from '../utils/helpers/authHelper';
 
 import {
   USER_LOADED,
@@ -38,15 +38,12 @@ export const loadUser = () => (dispatch, getState) => {
 // LOGIN USER
 export const login = (username, password) => (dispatch) => {
   // Headers
-  {
-    config;
-  }
-
+  CONFIG;
   // Request Body
   const body = JSON.stringify({ username, password });
 
   axios
-    .post('/api/auth/login', body, config)
+    .post('/api/auth/login', body, CONFIG)
     .then((res) => {
       dispatch({
         type: LOGIN_SUCCESS,
@@ -64,15 +61,12 @@ export const login = (username, password) => (dispatch) => {
 // REGISTER USER
 export const register = ({ username, password, email }) => (dispatch) => {
   // Headers
-  {
-    config;
-  }
-
+  CONFIG;
   // Request Body
   const body = JSON.stringify({ username, email, password });
 
   axios
-    .post('/api/auth/register', body, config)
+    .post('/api/auth/register', body, CONFIG)
     .then((res) => {
       dispatch({
         type: REGISTER_SUCCESS,
@@ -100,9 +94,4 @@ export const logout = () => (dispatch, getState) => {
     .catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
     });
-};
-
-// Setup config with token - helper function
-export const tokenConfig = (getState) => {
-  tokenConfig;
 };
