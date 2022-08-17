@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getcategories, editcategory, editcategory, deletecategory } from '../../actions/categories';
-import { Link } from 'react-router-dom';
+import { getcategories, deletecategory } from '../../actions/categories';
 import { Link } from 'react-router-dom';
 
 export class categories extends Component {
@@ -22,12 +21,7 @@ export class categories extends Component {
     return (
       <Fragment>
         <div className="row mt-3">
-          <div className="row mt-3">
           <h2 className="col-10">Category</h2>
-          <Link to="/form">
-            <button className="btn btn-success">Add Category</button>
-          </Link>
-        </div>
           <Link to="/form">
             <button className="btn btn-success">Add Category</button>
           </Link>
@@ -75,7 +69,7 @@ const mapStateToProps = (state) => ({
   categories: state.categories.categories,
 });
 
-export default connect(mapStateToProps, { getcategories, editcategory, editcategory, deletecategory })(
+export default connect(mapStateToProps, { getcategories, deletecategory })(
   
   categories,
 );
