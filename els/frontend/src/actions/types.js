@@ -1,6 +1,7 @@
 export const GET_categories = 'GET_categories';
 export const DELETE_category = 'DELETE_category';
 export const ADD_category = 'ADD_category';
+export const EDIT_category = 'EDIT_category';
 export const GET_ERRORS = 'GET_ERRORS';
 export const CREATE_MESSAGE = 'CREATE_MESSAGE';
 export const USER_LOADING = 'USER_LOADING';

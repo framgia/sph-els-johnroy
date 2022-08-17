@@ -80,7 +80,7 @@ export const register = ({ username, password, email }) => (dispatch) => {
 // LOGOUT USER
 export const logout = () => (dispatch, getState) => {
   axios
-    .post('/api/auth/logout/', null, tokenConfig(getState))
+    .post('/api/auth/logout', null, tokenConfig(getState))
     .then(() => {
       dispatch({ type: 'CLEAR_categories' });
       dispatch({

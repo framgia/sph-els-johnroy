@@ -5,7 +5,6 @@ import Categories from './categories';
 export default function Dashboard() {
   return (
     <Fragment>
-      <Form />
       <Categories />
     </Fragment>
   );
