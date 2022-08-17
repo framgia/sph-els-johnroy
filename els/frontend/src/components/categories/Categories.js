@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getcategories, deletecategory } from '../../actions/categories';
+import { Link } from 'react-router-dom';
 
 export class categories extends Component {
   static propTypes = {
