@@ -28,7 +28,7 @@ export const deletecategory = (id) => (dispatch, getState) => {
         payload: id,
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 // ADD category
@@ -45,16 +45,17 @@ export const addcategory = (category) => (dispatch, getState) => {
     .catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
+// TODO ( to be added on the next task )
 // EDIT category
-export const editcategory = (id) => (dispatch, getState) => {
-  axios
-    .post(`/api/categories/${id}/`, tokenConfig(getState))
-    .then((res) => {
-      dispatch(createMessage({ editcategory: 'category Updated' }));
-      dispatch({
-        type: EDIT_category,
-        payload: id,
-      });
-    })
-    .catch((err) => console.log(err));
-};
+// export const editcategory = (id) => (dispatch, getState) => {
+//   axios
+//     .post(`/api/categories/${id}/`, tokenConfig(getState))
+//     .then((res) => {
+//       dispatch(createMessage({ editcategory: 'category Updated' }));
+//       dispatch({
+//         type: EDIT_category,
+//         payload: id,
+//       });
+//     })
+//     .catch((err) => console.log(err));
+// };
