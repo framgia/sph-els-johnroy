@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addcategory } from '../../actions/categories';
+import { Redirect } from 'react-router-dom';
 
 export class Form extends Component {
   state = {
     name: '',
-    email: '',
     message: '',
   };
 
@@ -18,18 +18,20 @@ export class Form extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { name, email, message } = this.state;
-    const category = { name, email, message };
+    const { name, message } = this.state;
+    const category = { name, message };
     this.props.addcategory(category);
     this.setState({
       name: '',
-      email: '',
       message: '',
     });
+    window.setTimeout(function () {
+      location.href = '/';
+    }, 750);
   };
 
   render() {
-    const { name, email, message } = this.state;
+    const { name, message } = this.state;
     return (
       <div className="card card-body mt-4 mb-4">
         <h2>Add Category</h2>
@@ -45,17 +47,7 @@ export class Form extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Email</label>
-            <input
-              className="form-control"
-              type="email"
-              name="email"
-              onChange={this.onChange}
-              value={email}
-            />
-          </div>
-          <div className="form-group">
-            <label>Message</label>
+            <label>Description</label>
             <textarea
               className="form-control"
               type="text"
