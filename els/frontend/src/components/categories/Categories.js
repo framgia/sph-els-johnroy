@@ -38,7 +38,9 @@ export class categories extends Component {
                 <td>{category.name}</td>
                 <td>{category.message}</td>
                 <td className="d-flex align-items-center">
-                  <button className="btn btn-danger btn-sm"> Add Word</button>
+                  <Link to="/addquestion">
+                    <button className="btn btn-danger btn-sm">Add Word</button>
+                  </Link>
                   <button
                     // onClick={this.props.editcategory.bind(this, category.id)}
                     className="btn btn-danger btn-sm"
