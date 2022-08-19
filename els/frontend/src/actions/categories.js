@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createMessage, returnErrors } from './messages';
 import { tokenConfig } from '../utils/helpers/authHelper';
 
-import { GET_categories, DELETE_category, ADD_category, EDIT_category, EDIT_category } from './types';
+import { GET_categories, DELETE_category, ADD_category, EDIT_category } from './types';
 
 // GET categories
 export const getcategories = () => (dispatch, getState) => {

@@ -1,16 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getcategories, editcategory, editcategory, deletecategory } from '../../actions/categories';
-import { Link } from 'react-router-dom';
+import { getcategories, deletecategory } from '../../actions/categories';
 import { Link } from 'react-router-dom';
 
 export class categories extends Component {
   static propTypes = {
     categories: PropTypes.array.isRequired,
     getcategories: PropTypes.func.isRequired,
-    editcategory: PropTypes.func.isRequired,
-    editcategory: PropTypes.func.isRequired,
+    // editcategory: PropTypes.func.isRequired,
     deletecategory: PropTypes.func.isRequired,
   };
 
@@ -22,12 +20,7 @@ export class categories extends Component {
     return (
       <Fragment>
         <div className="row mt-3">
-          <div className="row mt-3">
           <h2 className="col-10">Category</h2>
-          <Link to="/form">
-            <button className="btn btn-success">Add Category</button>
-          </Link>
-        </div>
           <Link to="/form">
             <button className="btn btn-success">Add Category</button>
           </Link>
@@ -46,7 +39,9 @@ export class categories extends Component {
                 <td>{category.name}</td>
                 <td>{category.message}</td>
                 <td className="d-flex align-items-center">
-                  <button className="btn btn-danger btn-sm"> Add Word</button>
+                  <Link to="/addquestion">
+                    <button className="btn btn-danger btn-sm">Add Word</button>
+                  </Link>
                   <button
                     //TODO: onClick={this.props.editcategory.bind(this, category.id)}
                     className="btn btn-danger btn-sm"
@@ -75,7 +70,7 @@ const mapStateToProps = (state) => ({
   categories: state.categories.categories,
 });
 
-export default connect(mapStateToProps, { getcategories, editcategory, editcategory, deletecategory })(
-  
-  categories,
-);
+export default connect(mapStateToProps, {
+  getcategories,
+  deletecategory,
+})(categories);
