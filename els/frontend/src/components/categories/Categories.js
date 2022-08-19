@@ -23,7 +23,7 @@ export class categories extends Component {
       <Fragment>
         <div className="row mt-3">
           <div className="row mt-3">
-          <h2 className="col-10" className="col-10">Category</h2>
+          <h2 className="col-10">Category</h2>
           <Link to="/form">
             <button className="btn btn-success">Add Category</button>
           </Link>
@@ -78,5 +78,4 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, { getcategories, editcategory, editcategory, deletecategory })(
   
   categories,
-,
 );
