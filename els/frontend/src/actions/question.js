@@ -7,7 +7,7 @@ import { ADD_question } from './types';
 // ADD question
 export const addquestion = (question) => (dispatch, getState) => {
   axios
-    .post('/api/categories/addquestion/', question, tokenConfig(getState))
+    .post('/api/questions/', question, tokenConfig(getState))
     .then((res) => {
       dispatch(createMessage({ addquestion: 'question Added' }));
       dispatch({

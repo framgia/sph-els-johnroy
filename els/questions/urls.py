@@ -1,9 +1,9 @@
 from rest_framework import routers
-from .api import CategoryViewSet
+from .api import QuestionViewSet
 from django.urls import path, include
 
 router = routers.DefaultRouter()
-router.register('categories', CategoryViewSet, 'categories')
+router.register('questions', QuestionViewSet, 'questions')
 
 urlpatterns = [
     path('', include(router.urls)),

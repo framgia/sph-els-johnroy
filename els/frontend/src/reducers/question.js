@@ -1,7 +1,7 @@
 import { ADD_question } from '../actions/types.js';
 
 const initialState = {
-  question: [],
+  questions: [],
 };
 
 export default function (state = initialState, action) {
@@ -9,7 +9,7 @@ export default function (state = initialState, action) {
     case ADD_question:
       return {
         ...state,
-        question: [...state.question, action.payload],
+        questions: [...state.questions, action.payload],
       };
     default:
       return state;

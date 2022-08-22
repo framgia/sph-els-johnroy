@@ -10,17 +10,3 @@ class category(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     edited_at = models.DateTimeField(auto_now=True)
     times_taken = models.IntegerField(default=0, editable=False)
-
-
-class question(models.Model):
-    question = models.CharField(max_length=200)
-    choiceA = models.CharField(max_length=200, null=True)
-    choiceB = models.CharField(max_length=200, null=True)
-    choiceC = models.CharField(max_length=200, null=True)
-    choiceD = models.CharField(max_length=200, null=True)
-    correct = models.CharField(max_length=200, null=True)
-    categoryID = models.ForeignKey(
-        category, on_delete=models.CASCADE,  related_name='questions', blank=True, null=True)
-
-    def __str__(self):
-        return self.question
