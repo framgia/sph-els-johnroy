@@ -8,5 +8,6 @@ urlpatterns = [
     path('api/', include(([
         path('', include('categories.urls')),
         path('', include('accounts.urls')),
+        path('', include('questions.urls')),
     ]))),
 ]

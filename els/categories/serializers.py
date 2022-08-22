@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import category, question
+from .models import category
 
 # category Serializer
 
@@ -7,9 +7,4 @@ from .models import category, question
 class CategoriesSerializer(serializers.ModelSerializer):
     class Meta:
         model = category
-        fields = '__all__'
-
-class QuestionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = question
         fields = '__all__'
