@@ -15,9 +15,19 @@ export class Header extends Component {
 
     const authLinks = (
       <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-        <span className="navbar-text mr-3">
+        <li className="nav-item">
+          <Link to="/" className="nav-link">
+            Categories
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/profiles" className="nav-link">
+            Users
+          </Link>
+        </li>
+        {/* <span className="navbar-text mr-3">
           <strong>{user ? `Welcome ${user.username}` : ''}</strong>
-        </span>
+        </span> */}
         <li className="nav-item">
           <button onClick={this.props.logout} className="nav-link btn btn-info btn-sm text-light">
             Logout
