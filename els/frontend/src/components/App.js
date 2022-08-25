@@ -9,6 +9,7 @@ import Header from './layout/Header';
 import Dashboard from './categories/Dashboard';
 import Form from './categories/Form';
 import AddWord from './categories/AddWord';
+import profiles from './categories/Profiles';
 import Alerts from './layout/Alerts';
 import Login from './accounts/Login';
 import Register from './accounts/Register';
@@ -44,6 +45,7 @@ class App extends Component {
                   <Route exact path="/login" component={Login} />
                   <Route exact path="/form" component={Form} />
                   <Route exact path="/addquestion" component={AddWord} />
+                  <Route exact path="/profiles" component={profiles} />
                 </Switch>
               </div>
             </Fragment>
