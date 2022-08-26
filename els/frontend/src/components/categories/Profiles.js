@@ -4,6 +4,11 @@ import PropTypes from 'prop-types';
 import { getprofiles } from '../../actions/profiles';
 
 export class profiles extends Component {
+  static propTypes = {
+    profiles: PropTypes.array.isRequired,
+    getprofiles: PropTypes.func.isRequired,
+  };
+
   componentDidMount() {
     this.props.getprofiles();
   }
@@ -19,7 +24,7 @@ export class profiles extends Component {
             <tr>
             <th>ID</th>
               <th>Avatar</th>
-              <th>Name</th>
+              <th>Username</th>
               <th>Email</th>
               <th>Date Joined</th>
               <th />
@@ -29,16 +34,10 @@ export class profiles extends Component {
             {this.props.profiles.map((profile) => (
               <tr key={profile.id}>
                 <td>{profile.id}</td>
-                <td>{profile.user.name}</td>
-                <td className="d-flex align-items-center">
-                  <button
-                    // onClick={this.props.deleteprofile.bind(this, profile.id)}
-                    className="btn btn-danger btn-sm"
-                  >
-                    {' '}
-                    Delete
-                  </button>
-                </td>
+                <td>AVATAR</td>
+                <td>{profile.user.username}</td>
+                <td>{profile.user.email}</td>
+                <td>{profile.created_at}</td>
               </tr>
             ))}
           </tbody>

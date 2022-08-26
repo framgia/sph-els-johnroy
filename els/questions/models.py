@@ -9,3 +9,6 @@ class question(models.Model):
     choiceC = models.CharField(max_length=200, null=True)
     choiceD = models.CharField(max_length=200, null=True)
     correct = models.CharField(max_length=200, null=True)
+
+    class Meta:
+        db_table = "question"

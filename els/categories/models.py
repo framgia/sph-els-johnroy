@@ -10,3 +10,6 @@ class category(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     edited_at = models.DateTimeField(auto_now=True)
     times_taken = models.IntegerField(default=0, editable=False)
+
+    class Meta:
+        db_table = "category"
