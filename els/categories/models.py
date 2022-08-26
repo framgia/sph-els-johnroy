@@ -9,3 +9,4 @@ class category(models.Model):
         User, related_name="categories", on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     edited_at = models.DateTimeField(auto_now=True)
+    times_taken = models.IntegerField(default=0, editable=False)

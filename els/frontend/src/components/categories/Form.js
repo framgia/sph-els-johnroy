@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addcategory } from '../../actions/categories';
-import { Redirect } from 'react-router-dom';
 
 export class Form extends Component {
   state = {
