@@ -32,9 +32,6 @@ export class AddWord extends Component {
       choiceD: '',
       correct: '',
     });
-    // window.setTimeout(function () {
-    //   location.href = '/';
-    // }, 750);
   };
 
   render() {
