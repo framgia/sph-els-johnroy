@@ -1,12 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getcategories, editcategory, deletecategory } from '../../actions/categories';
+import { getcategories, editcategory, editcategory, deletecategory } from '../../actions/categories';
+import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export class categories extends Component {
   static propTypes = {
     categories: PropTypes.array.isRequired,
     getcategories: PropTypes.func.isRequired,
+    editcategory: PropTypes.func.isRequired,
     editcategory: PropTypes.func.isRequired,
     deletecategory: PropTypes.func.isRequired,
   };
@@ -18,7 +21,17 @@ export class categories extends Component {
   render() {
     return (
       <Fragment>
-        <h2>Category</h2>
+        <div className="row mt-3">
+          <div className="row mt-3">
+          <h2 className="col-10">Category</h2>
+          <Link to="/form">
+            <button className="btn btn-success">Add Category</button>
+          </Link>
+        </div>
+          <Link to="/form">
+            <button className="btn btn-success">Add Category</button>
+          </Link>
+        </div>
         <table className="table table-striped">
           <thead>
             <tr>
@@ -62,6 +75,7 @@ const mapStateToProps = (state) => ({
   categories: state.categories.categories,
 });
 
-export default connect(mapStateToProps, { getcategories, editcategory, deletecategory })(
+export default connect(mapStateToProps, { getcategories, editcategory, editcategory, deletecategory })(
+  
   categories,
 );
