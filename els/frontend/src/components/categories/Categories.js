@@ -19,7 +19,7 @@ export class categories extends Component {
     return (
       <Fragment>
         <div className="row mt-3">
-          <h2 className="col-10">Category</h2>
+          <h2 className="col-10" className="col-10">Category</h2>
           <Link to="/form">
             <button className="btn btn-success">Add Category</button>
           </Link>
