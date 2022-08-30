@@ -14,3 +14,4 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const CLEAR_categories = 'CLEAR_categories';
 export const ADD_question = 'ADD_question';
+export const GET_profiles = 'GET_profiles';
