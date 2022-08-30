@@ -9,5 +9,6 @@ urlpatterns = [
         path('', include('categories.urls')),
         path('', include('accounts.urls')),
         path('', include('questions.urls')),
+        path('', include('profiles.urls')),
     ]))),
 ]
