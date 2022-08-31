@@ -16,3 +16,4 @@ export const CLEAR_categories = 'CLEAR_categories';
 export const ADD_question = 'ADD_question';
 export const GET_profiles = 'GET_profiles';
 export const GET_userlists = 'GET_userlists';
+export const GET_activitylogs = 'GET_activitylogs';
