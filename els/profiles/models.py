@@ -8,9 +8,9 @@ class profile(models.Model):
     user = models.ForeignKey(
         User, related_name="profiles", on_delete=models.CASCADE, null=True)
     following = models.ManyToManyField(
-        User, related_name='following', blank=True, null=True)
-    questions = models.ManyToManyField(
-        question, related_name='lessonlearned', blank=True, null=True)
+        "self", related_name='followers', blank=True, symmetrical=False)
+    wordslearned = models.IntegerField(default=0, null=True)
+    lessonslearned = models.IntegerField(default=0, null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     edited_at = models.DateTimeField(auto_now=True, null=True)
 
