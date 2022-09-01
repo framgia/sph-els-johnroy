@@ -48,11 +48,11 @@ export class dashboard extends Component {
                       <td>Lessons Learned:{profile.lessonslearned}</td>
                     </tr>
                   </tbody>
+                  <Link to={`/editprofile/${profile.id}`}>
+                    <button className="btn btn-primary btn-sm">Edit Profile</button>
+                  </Link>
                 </table>
               ))}
-              <Link to="/editprofile">
-                <button className="btn btn-primary btn-sm">Edit Profile</button>
-              </Link>
             </div>
           </div>
           <div className="card" style={{ width: '50rem', height: '15rem' }}>
