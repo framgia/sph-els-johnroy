@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'accounts',
     'questions',
     'profiles',
+    'activitylogs',
 ]
 
 REST_FRAMEWORK = {

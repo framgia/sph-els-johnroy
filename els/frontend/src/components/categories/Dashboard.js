@@ -2,16 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getprofiles } from '../../actions/profiles';
+import { getactivitylogs } from '../../actions/activitylogs';
 import { Link } from 'react-router-dom';
 
 export class dashboard extends Component {
   static propTypes = {
     profiles: PropTypes.array.isRequired,
     getprofiles: PropTypes.func.isRequired,
+    activitylogs: PropTypes.func.isRequired,
+    getactivitylogs: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
     this.props.getprofiles();
+    this.props.getactivitylogs();
   }
 
   render() {
@@ -62,11 +66,10 @@ export class dashboard extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.props.profiles.map((profile) => (
-                  <tr key={profile.id}>
+                {this.props.activitylogs.map((activitylog) => (
+                  <tr key={activitylog.id}>
                     <td>
-                      {profile.user.username} has recently learned 1000 of 1000 words in
-                      JapaneseJapaneseJapanese Earth Ichinisan Go level 5000000
+                      {activitylog.owner.username} {activitylog.message}
                     </td>
                   </tr>
                 ))}
@@ -81,8 +84,10 @@ export class dashboard extends Component {
 
 const mapStateToProps = (state) => ({
   profiles: state.profiles.profiles,
+  activitylogs: state.activitylogs.activitylogs,
 });
 
 export default connect(mapStateToProps, {
   getprofiles,
+  getactivitylogs,
 })(dashboard);
