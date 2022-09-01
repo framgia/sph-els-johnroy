@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getcategories, deletecategory } from '../../actions/categories';
@@ -17,11 +17,11 @@ export class categories extends Component {
 
   render() {
     return (
-      <Fragment>
+      <div>
         <div className="row mt-3">
           <h2 className="col-10">Category</h2>
           <Link to="/form">
-            <button className="btn btn-success">Add Category</button>
+            <button className="btn btn-success ml-3">Add Category</button>
           </Link>
         </div>
         <table className="table table-striped">
@@ -36,7 +36,7 @@ export class categories extends Component {
             {this.props.categories.map((category) => (
               <tr key={category.id}>
                 <td>{category.name}</td>
-                <td>{category.message}</td>
+                <td className="col-md-7">{category.message}</td>
                 <td className="d-flex align-items-center">
                   <Link to="/addquestion">
                     <button className="btn btn-danger btn-sm">Add Word</button>
@@ -59,7 +59,7 @@ export class categories extends Component {
             ))}
           </tbody>
         </table>
-      </Fragment>
+      </div>
     );
   }
 }

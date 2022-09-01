@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getprofiles } from '../../actions/profiles';
+import { getuserlists } from '../../actions/profiles';
 
 export class profiles extends Component {
   static propTypes = {
     profiles: PropTypes.array.isRequired,
-    getprofiles: PropTypes.func.isRequired,
+    getuserlists: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
-    this.props.getprofiles();
+    this.props.getuserlists();
   }
 
   render() {
@@ -52,5 +52,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  getprofiles,
+    getuserlists,
 })(profiles);
