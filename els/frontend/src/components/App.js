@@ -8,6 +8,7 @@ import AlertTemplate from 'react-alert-template-basic';
 import Header from './layout/Header';
 import Dashboard from './categories/Dashboard';
 import Form from './categories/Form';
+import EditCategory from './categories/EditCategory';
 import AddWord from './categories/AddWord';
 import categories from './categories/Categories';
 import profiles from './categories/Profiles';
@@ -48,6 +49,7 @@ class App extends Component {
                   <Route exact path="/addquestion" component={AddWord} />
                   <Route exact path="/userlist" component={profiles} />
                   <Route exact path="/categories" component={categories} />
+                  <Route exact path="/editcategory/:id" component={EditCategory} />
                 </Switch>
               </div>
             </Fragment>

@@ -41,12 +41,9 @@ export class categories extends Component {
                   <Link to="/addquestion">
                     <button className="btn btn-danger btn-sm">Add Word</button>
                   </Link>
-                  <button
-                    className="btn btn-danger btn-sm"
-                  >
-                    {' '}
-                    Edit
-                  </button>
+                  <Link to={`/editcategory/${category.id}`}>
+                    <button className="btn btn-danger btn-sm">Edit</button>
+                  </Link>
                   <button
                     onClick={this.props.deletecategory.bind(this, category.id)}
                     className="btn btn-danger btn-sm"
@@ -68,6 +65,4 @@ const mapStateToProps = (state) => ({
   categories: state.categories.categories,
 });
 
-export default connect(mapStateToProps, { getcategories, deletecategory })(
-  categories,
-);
+export default connect(mapStateToProps, { getcategories, deletecategory })(categories);

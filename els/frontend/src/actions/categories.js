@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createMessage, returnErrors } from './messages';
 import { tokenConfig } from '../utils/helpers/authHelper';
 
-import { GET_categories, DELETE_category, ADD_category } from './types';
+import { GET_categories, DELETE_category, ADD_category, EDIT_category } from './types';
 
 // GET categories
 export const getcategories = () => (dispatch, getState) => {
@@ -39,6 +39,20 @@ export const addcategory = (category) => (dispatch, getState) => {
       dispatch(createMessage({ addcategory: 'category Added' }));
       dispatch({
         type: ADD_category,
+        payload: res.data,
+      });
+    })
+    .catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
+// EDIT category
+export const editcategory = (category) => (dispatch, getState) => {
+  axios
+    .put(`/api/categories/${category.id}/`, category, tokenConfig(getState))
+    .then((res) => {
+      dispatch(createMessage({ editcategory: 'category Edit' }));
+      dispatch({
+        type: EDIT_category,
         payload: res.data,
       });
     })
