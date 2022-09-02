@@ -5,6 +5,7 @@ import messages from './messages';
 import auth from './auth';
 import profiles from './profiles';
 import activitylogs from './activitylogs';
+import questions from './question'
 
 export default combineReducers({
   categories,
@@ -13,4 +14,5 @@ export default combineReducers({
   auth,
   profiles,
   activitylogs,
+  questions,
 });

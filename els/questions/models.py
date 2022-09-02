@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from categories.models import category
 
 
 class question(models.Model):
@@ -9,3 +9,5 @@ class question(models.Model):
     choiceC = models.CharField(max_length=200, null=True)
     choiceD = models.CharField(max_length=200, null=True)
     correct = models.CharField(max_length=200, null=True)
+    categoryid = models.ForeignKey(
+        category, related_name="categories", on_delete=models.CASCADE, null=True)
