@@ -24,7 +24,9 @@ export default function (state = initialState, action) {
     case EDIT_category:
       return {
         ...state,
-        categories: state.categories.filter((category) => category.id !== action.payload),
+        categories: state.categories.map(
+          (content, id) => content.id === action.payload.id ? {...content, name : action.payload.name, message : action.payload.message } : conent
+        )
       };  
     case CLEAR_categories:
       return {

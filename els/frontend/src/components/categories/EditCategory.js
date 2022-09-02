@@ -1,29 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addcategory } from '../../actions/categories';
+import { editcategory } from '../../actions/categories';
+import { withRouter } from 'react-router';
 
-export class Form extends Component {
+export class EditCategory extends Component {
   state = {
+    id: '',
     name: '',
     message: '',
   };
 
-  static propTypes = {
-    addcategory: PropTypes.func.isRequired,
-  };
-
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
-
   onSubmit = (e) => {
     e.preventDefault();
+    const id = this.props.match.params.id;
     const { name, message } = this.state;
-    const category = { name, message };
-    this.props.addcategory(category);
+    const category = { id, name, message };
+    this.props.editcategory(category);
     this.setState({
+      id: '',
       name: '',
       message: '',
-    });
+    })
     window.setTimeout(function () {
       location.href = '#/categories';
     }, 750);
@@ -33,7 +32,7 @@ export class Form extends Component {
     const { name, message } = this.state;
     return (
       <div className="card card-body mt-4 mb-4">
-        <h2>Add Category</h2>
+        <h2>Edit Category</h2>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Title</label>
@@ -66,4 +65,4 @@ export class Form extends Component {
   }
 }
 
-export default connect(null, { addcategory })(Form);
+export default connect(null, { editcategory, withRouter })(EditCategory);
