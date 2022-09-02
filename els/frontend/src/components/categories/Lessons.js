@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getcategories, deletecategory } from '../../actions/categories';
+import { getcategories } from '../../actions/categories';
 import { Link } from 'react-router-dom';
 
-export class categories extends Component {
+export class Lessons extends Component {
   static propTypes = {
     categories: PropTypes.array.isRequired,
     getcategories: PropTypes.func.isRequired,
-    deletecategory: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -19,10 +18,7 @@ export class categories extends Component {
     return (
       <div>
         <div className="row mt-3">
-          <h2 className="col-10">Category</h2>
-          <Link to="/form">
-            <button className="btn btn-success ml-3">Add Category</button>
-          </Link>
+          <h2 className="col-10">Lessons</h2>
         </div>
         <table className="table table-striped">
           <thead>
@@ -38,19 +34,9 @@ export class categories extends Component {
                 <td>{category.name}</td>
                 <td className="col-md-7">{category.message}</td>
                 <td className="d-flex align-items-center">
-                  <Link to={`/addquestion/${category.id}`}>
-                    <button className="btn btn-danger btn-sm">Add Word</button>
+                  <Link to="/takelesson">
+                    <button className="btn btn-danger btn-sm">Take Lesson</button>
                   </Link>
-                  <Link to={`/editcategory/${category.id}`}>
-                    <button className="btn btn-danger btn-sm">Edit</button>
-                  </Link>
-                  <button
-                    onClick={this.props.deletecategory.bind(this, category.id)}
-                    className="btn btn-danger btn-sm"
-                  >
-                    {' '}
-                    Delete
-                  </button>
                 </td>
               </tr>
             ))}
@@ -65,4 +51,4 @@ const mapStateToProps = (state) => ({
   categories: state.categories.categories,
 });
 
-export default connect(mapStateToProps, { getcategories, deletecategory })(categories);
+export default connect(mapStateToProps, { getcategories })(Lessons);

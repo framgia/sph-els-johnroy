@@ -16,7 +16,7 @@ export class Header extends Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
         <li className="nav-item">
-          <Link to="/categories" className="nav-link">
+          <Link to="/lessons" className="nav-link">
             Categories
           </Link>
         </li>

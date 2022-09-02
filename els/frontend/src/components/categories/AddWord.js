@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addquestion } from '../../actions/question';
+import { withRouter } from 'react-router';
 
 export class AddWord extends Component {
   state = {
@@ -11,6 +12,7 @@ export class AddWord extends Component {
     choiceC: '',
     choiceD: '',
     correct: '',
+    categoryid: '',
   };
 
   static propTypes = {
@@ -21,8 +23,9 @@ export class AddWord extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+    const categoryid = this.props.match.params.id;
     const { name, choiceA, choiceB, choiceC, choiceD, correct } = this.state;
-    const question = { name, choiceA, choiceB, choiceC, choiceD, correct };
+    const question = { name, choiceA, choiceB, choiceC, choiceD, correct, categoryid };
     this.props.addquestion(question);
     this.setState({
       name: '',
@@ -31,7 +34,11 @@ export class AddWord extends Component {
       choiceC: '',
       choiceD: '',
       correct: '',
+      categoryid: '',
     });
+    window.setTimeout(function () {
+      location.href = '#/categories';
+    }, 750);
   };
 
   render() {

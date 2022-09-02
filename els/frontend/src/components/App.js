@@ -12,6 +12,8 @@ import EditCategory from './categories/EditCategory';
 import EditProfile from './categories/EditProfile';
 import AddWord from './categories/AddWord';
 import categories from './categories/Categories';
+import Lessons from './categories/Lessons';
+import TakeLesson from './categories/TakeLesson';
 import profiles from './categories/Profiles';
 import Alerts from './layout/Alerts';
 import Login from './accounts/Login';
@@ -47,9 +49,11 @@ class App extends Component {
                   <Route exact path="/register" component={Register} />
                   <Route exact path="/login" component={Login} />
                   <Route exact path="/form" component={Form} />
-                  <Route exact path="/addquestion" component={AddWord} />
+                  <Route exact path="/addquestion/:id" component={AddWord} />
                   <Route exact path="/userlist" component={profiles} />
                   <Route exact path="/categories" component={categories} />
+                  <Route exact path="/lessons" component={Lessons} />
+                  <Route exact path="/takelesson" component={TakeLesson} />
                   <Route exact path="/editcategory/:id" component={EditCategory} />
                   <Route exact path="/editprofile/:id" component={EditProfile} />
                 </Switch>
