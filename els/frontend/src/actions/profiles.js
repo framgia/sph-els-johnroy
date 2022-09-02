@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createMessage, returnErrors } from './messages';
 import { tokenConfig } from '../utils/helpers/authHelper';
 
-import { GET_profiles, GET_userlists } from './types';
+import { GET_profiles, GET_userlists, EDIT_profile } from './types';
 
 // GET profiles
 export const getprofiles = () => (dispatch, getState) => {
@@ -19,14 +19,26 @@ export const getprofiles = () => (dispatch, getState) => {
 
 // GET userlists
 export const getuserlists = () => (dispatch, getState) => {
-    axios
-      .get('/api/userlists/', tokenConfig(getState))
-      .then((res) => {
-        dispatch({
-          type: GET_userlists,
-          payload: res.data,
-        });
-      })
-      .catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
-  };
-  
+  axios
+    .get('/api/userlists/', tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: GET_userlists,
+        payload: res.data,
+      });
+    })
+    .catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
+export const editprofile = (profile) => (dispatch, getState) => {
+  axios
+    .put(`/api/users/${profile.id}/`, profile, tokenConfig(getState))
+    .then((res) => {
+      dispatch(createMessage({ editprofile: 'profile Edit' }));
+      dispatch({
+        type: EDIT_profile,
+        payload: res.data,
+      });
+    })
+    .catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+};

@@ -9,6 +9,7 @@ import Header from './layout/Header';
 import Dashboard from './categories/Dashboard';
 import Form from './categories/Form';
 import EditCategory from './categories/EditCategory';
+import EditProfile from './categories/EditProfile';
 import AddWord from './categories/AddWord';
 import categories from './categories/Categories';
 import profiles from './categories/Profiles';
@@ -50,6 +51,7 @@ class App extends Component {
                   <Route exact path="/userlist" component={profiles} />
                   <Route exact path="/categories" component={categories} />
                   <Route exact path="/editcategory/:id" component={EditCategory} />
+                  <Route exact path="/editprofile/:id" component={EditProfile} />
                 </Switch>
               </div>
             </Fragment>

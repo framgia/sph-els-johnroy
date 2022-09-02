@@ -1,8 +1,9 @@
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, viewsets
 from rest_framework.response import Response
 from knox.models import AuthToken
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer
-
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 # Register API
 
 
@@ -45,3 +46,19 @@ class UserAPI(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+    serializer_class = RegisterSerializer
+    queryset = User.objects.all()
+
+    def perform_update(self, serializer):
+        # Hash password but passwords are not required
+        if ('password' in self.request.data):
+            password = make_password(self.request.data['password'])
+            serializer.save(password=password)
+        else:
+            serializer.save()
