@@ -23,20 +23,20 @@ export class TakeLesson extends Component {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Message</th>
+              <th>Word</th>
+              <th>Choices</th>
               <th />
             </tr>
           </thead>
           <tbody>
             {this.props.questions.map((question) => (
               <tr key={question.id}>
-                
                 <td>{question.name}</td>
-                <td className="d-flex align-items-center">
-                  <Link to="/takelesson">
-                    <button className="btn btn-danger btn-sm">A</button>
-                  </Link>
+                <td className="d-flex align-items-center col-10">
+                  <button className="btn btn-danger btn-sm mx-5">A. {question.choiceA}</button>
+                  <button className="btn btn-danger btn-sm mx-5">B. {question.choiceB}</button>
+                  <button className="btn btn-danger btn-sm mx-5">C. {question.choiceC}</button>
+                  <button className="btn btn-danger btn-sm mx-5">D. {question.choiceD}</button>
                 </td>
               </tr>
             ))}
@@ -48,7 +48,7 @@ export class TakeLesson extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    questions: state.questions.questions,
+  questions: state.questions.questions,
 });
 
 export default connect(mapStateToProps, { getquestions })(TakeLesson);

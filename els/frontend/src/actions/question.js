@@ -27,7 +27,6 @@ export const getquestions = () => (dispatch, getState) => {
         type: GET_questions,
         payload: res.data,
       });
-      // {console.log(res);}
     })
     .catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 };
