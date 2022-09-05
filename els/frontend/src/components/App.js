@@ -19,6 +19,7 @@ import Alerts from './layout/Alerts';
 import Login from './accounts/Login';
 import Register from './accounts/Register';
 import PrivateRoute from './common/PrivateRoute';
+import AdminRoute from './common/AdminRoute';
 
 import { Provider } from 'react-redux';
 import store from '../store';
@@ -48,14 +49,14 @@ class App extends Component {
                   <PrivateRoute exact path="/" component={Dashboard} />
                   <Route exact path="/register" component={Register} />
                   <Route exact path="/login" component={Login} />
-                  <Route exact path="/form" component={Form} />
-                  <Route exact path="/addquestion/:id" component={AddWord} />
-                  <Route exact path="/userlist" component={profiles} />
-                  <Route exact path="/categories" component={categories} />
-                  <Route exact path="/lessons" component={Lessons} />
-                  <Route exact path="/takelesson" component={TakeLesson} />
-                  <Route exact path="/editcategory/:id" component={EditCategory} />
-                  <Route exact path="/editprofile/:id" component={EditProfile} />
+                  <AdminRoute exact path="/form" component={Form} />
+                  <AdminRoute exact path="/addquestion/:id" component={AddWord} />
+                  <PrivateRoute exact path="/userlist" component={profiles} />
+                  <AdminRoute exact path="/categories" component={categories} />
+                  <PrivateRoute exact path="/lessons" component={Lessons} />
+                  <PrivateRoute exact path="/takelesson" component={TakeLesson} />
+                  <AdminRoute exact path="/editcategory/:id" component={EditCategory} />
+                  <AdminRoute exact path="/editprofile/:id" component={EditProfile} />
                 </Switch>
               </div>
             </Fragment>

@@ -13,6 +13,26 @@ export class Header extends Component {
   render() {
     const { isAuthenticated, user } = this.props.auth;
 
+    const adminLinks = (
+      <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+        <li className="nav-item">
+          <Link to="/categories" className="nav-link">
+            Categories
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/userlist" className="nav-link">
+            Users
+          </Link>
+        </li>
+        <li className="nav-item">
+          <button onClick={this.props.logout} className="nav-link btn btn-info btn-sm text-light">
+            Logout
+          </button>
+        </li>
+      </ul>
+    );
+
     const authLinks = (
       <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
         <li className="nav-item">
@@ -64,10 +84,13 @@ export class Header extends Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <a className="navbar-brand" href="#">
-              E-Learning System | ADMIN
+              {!isAuthenticated
+                ? 'Welcome to E-Learning System'
+                : user.is_staff ? 'E-Learning System | ADMIN' : 'E-Learning System'
+              }
             </a>
           </div>
-          {isAuthenticated ? authLinks : guestLinks}
+          {!isAuthenticated ? guestLinks : user.is_staff ? adminLinks : authLinks}
         </div>
       </nav>
     );
