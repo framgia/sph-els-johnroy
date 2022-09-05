@@ -86,12 +86,11 @@ export class Header extends Component {
             <a className="navbar-brand" href="#">
               {!isAuthenticated
                 ? 'Welcome to E-Learning System'
-                : `${user.is_staff}` == 'true'
-                ? 'E-Learning System | ADMIN'
-                : 'E-Learning System'}
+                : user.is_staff ? 'E-Learning System | ADMIN' : 'E-Learning System'
+              }
             </a>
           </div>
-          {!isAuthenticated ? guestLinks : `${user.is_staff}` == 'true' ? adminLinks : authLinks}
+          {!isAuthenticated ? guestLinks : user.is_staff ? adminLinks : authLinks}
         </div>
       </nav>
     );
