@@ -54,7 +54,7 @@ class App extends Component {
                   <PrivateRoute exact path="/userlist" component={profiles} />
                   <AdminRoute exact path="/categories" component={categories} />
                   <PrivateRoute exact path="/lessons" component={Lessons} />
-                  <PrivateRoute exact path="/takelesson" component={TakeLesson} />
+                  <PrivateRoute exact path="/takelesson/:id" component={TakeLesson} />
                   <AdminRoute exact path="/editcategory/:id" component={EditCategory} />
                   <AdminRoute exact path="/editprofile/:id" component={EditProfile} />
                 </Switch>

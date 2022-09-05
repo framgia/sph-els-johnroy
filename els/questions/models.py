@@ -1,6 +1,6 @@
 from django.db import models
 from categories.models import category
-
+from django.contrib.auth.models import User
 
 class question(models.Model):
     name = models.CharField(max_length=200)
@@ -11,3 +11,5 @@ class question(models.Model):
     correct = models.CharField(max_length=200, null=True)
     categoryid = models.ForeignKey(
         category, related_name="categories", on_delete=models.CASCADE, null=True)
+    userid = models.ManyToManyField(
+        User, related_name="usertaken", blank=True)
