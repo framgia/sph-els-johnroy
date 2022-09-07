@@ -11,5 +11,6 @@ urlpatterns = [
         path('', include('questions.urls')),
         path('', include('profiles.urls')),
         path('', include('activitylogs.urls')),
+        path('', include('results.urls')),
     ]))),
 ]

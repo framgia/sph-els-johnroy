@@ -1,4 +1,4 @@
-import { ADD_question, GET_questions } from '../actions/types.js';
+import { ADD_question, EDIT_question, GET_questions } from '../actions/types.js';
 
 const initialState = {
   questions: [],
@@ -15,6 +15,15 @@ export default function (state = initialState, action) {
       return {
         ...state,
         questions: action.payload,
+      };
+    case EDIT_question:
+      return {
+        ...state,
+        questions: state.questions.map((content, id) =>
+          content.id === action.payload.id
+            ? { ...content, name: action.payload.name, message: action.payload.message }
+            : content,
+        ),
       };
     default:
       return state;

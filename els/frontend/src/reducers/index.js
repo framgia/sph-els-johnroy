@@ -6,6 +6,7 @@ import auth from './auth';
 import profiles from './profiles';
 import activitylogs from './activitylogs';
 import questions from './question'
+import results from './results';
 
 export default combineReducers({
   categories,
@@ -15,4 +16,5 @@ export default combineReducers({
   profiles,
   activitylogs,
   questions,
+  results,
 });
