@@ -49,7 +49,6 @@ export class TakeLesson extends Component {
       question: '',
       iscorrect: '',
     });
-    console.log(result);
   };
 
   render() {
@@ -66,7 +65,6 @@ export class TakeLesson extends Component {
             </tr>
           </thead>
           <tbody className="text-center">
-            {/* {console.log(this.props.questions?.[1]?.name)} */}
             {this.props.questions.map((question) => (
               <tr key={question.id}>
                 {`${question.categoryid}` === `${categoryid}` && (
