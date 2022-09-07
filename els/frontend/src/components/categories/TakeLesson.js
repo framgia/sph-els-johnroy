@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { getquestions, editquestion } from '../../actions/question';
 import { addactivitylogs } from '../../actions/activitylogs';
 import { addresult } from '../../actions/results';
-import { loadUser } from '../../actions/auth';
+import { getprofiles, updatelearned } from '../../actions/profiles';
 
 export class TakeLesson extends Component {
   state = {
@@ -16,7 +16,6 @@ export class TakeLesson extends Component {
   };
 
   static propTypes = {
-    auth: PropTypes.object.isRequired,
     questions: PropTypes.array.isRequired,
     getquestions: PropTypes.func.isRequired,
     addresult: PropTypes.func.isRequired,
@@ -26,6 +25,7 @@ export class TakeLesson extends Component {
 
   componentDidMount() {
     this.props.getquestions();
+    this.props.getprofiles();
   }
 
   onChange = (e) =>
@@ -47,6 +47,11 @@ export class TakeLesson extends Component {
       const name = useranswer;
       const log = { name, message };
       this.props.addactivitylogs(log);
+      const id = this.props.profiles[0].id;
+      const wordslearned = this.props.profiles[0].wordslearned + 1;
+      const profile = { id, wordslearned };
+      this.props.updatelearned({ id, wordslearned });
+      console.log(profile);
     }
     const id = question;
     this.props.editquestion({ id });
@@ -151,9 +156,9 @@ export class TakeLesson extends Component {
 
 const mapStateToProps = (state) => ({
   questions: state.questions.questions,
-  auth: state.auth,
+  profiles: state.profiles.profiles,
 });
 
-export default connect(mapStateToProps, { getquestions, addresult, editquestion, loadUser, addactivitylogs })(
+export default connect(mapStateToProps, { getquestions, addresult, editquestion, addactivitylogs, getprofiles, updatelearned })(
   TakeLesson,
 );
