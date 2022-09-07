@@ -5,6 +5,7 @@ import { getquestions, editquestion } from '../../actions/question';
 import { addactivitylogs } from '../../actions/activitylogs';
 import { addresult } from '../../actions/results';
 import { getprofiles, updatelearned } from '../../actions/profiles';
+import { Link } from 'react-router-dom';
 
 export class TakeLesson extends Component {
   state = {
@@ -13,6 +14,7 @@ export class TakeLesson extends Component {
     category: '',
     question: '',
     iscorrect: '',
+    name: '',
   };
 
   static propTypes = {
@@ -33,14 +35,15 @@ export class TakeLesson extends Component {
       useranswer: e.target.name,
       correctanswer: e.target.value,
       question: e.target.id,
+      name: e.target.placeholder,
     });
 
   onSubmit = (e) => {
     e.preventDefault();
     const category = this.props.match.params.id;
-    const { useranswer, correctanswer, question } = this.state;
+    const { useranswer, correctanswer, question, name } = this.state;
     const iscorrect = useranswer === correctanswer ? '1' : '0';
-    const result = { useranswer, correctanswer, category, question, iscorrect };
+    const result = { useranswer, correctanswer, category, question, iscorrect, name };
     this.props.addresult(result);
     if (iscorrect == 1) {
       const message = `has learned the word "${correctanswer}"`;
@@ -60,11 +63,13 @@ export class TakeLesson extends Component {
       category: '',
       question: '',
       iscorrect: '',
+      name: '',
     });
   };
 
   render() {
     const categoryid = this.props.match.params.id;
+    const userid = this.props.profiles[0].id;
     return (
       <div>
         <div className="row mt-3">
@@ -79,7 +84,8 @@ export class TakeLesson extends Component {
           <tbody className="text-center">
             {this.props.questions.map((question) => (
               <tr key={question.id}>
-                {`${question.categoryid}` === `${categoryid}` && (
+                {(`${question.categoryid}` === `${categoryid}`) &
+                (`${question.userid}` !== `${userid}`) ? (
                   <td>
                     <td>{question.name}</td>
                     <td className="d-flex align-items-center col-10">
@@ -91,6 +97,7 @@ export class TakeLesson extends Component {
                               name={question.choiceA}
                               value={question.correct}
                               id={question.id}
+                              placeholder={question.name}
                               onChange={this.onChange}
                             />
                             A. {question.choiceA}
@@ -103,6 +110,7 @@ export class TakeLesson extends Component {
                               name={question.choiceB}
                               value={question.correct}
                               id={question.id}
+                              placeholder={question.name}
                               onChange={this.onChange}
                             />
                             B. {question.choiceB}
@@ -115,6 +123,7 @@ export class TakeLesson extends Component {
                               name={question.choiceC}
                               value={question.correct}
                               id={question.id}
+                              placeholder={question.name}
                               onChange={this.onChange}
                             />
                             C. {question.choiceC}
@@ -127,27 +136,30 @@ export class TakeLesson extends Component {
                               name={question.choiceD}
                               value={question.correct}
                               id={question.id}
+                              placeholder={question.name}
                               onChange={this.onChange}
                             />
                             D. {question.choiceD}
                           </label>
                         </div>
                         <div className="form-group">
-                          <button
-                            type="submit"
-                            className="btn btn-primary"
-                          >
+                          <button type="submit" className="btn btn-primary">
                             Submit
                           </button>
                         </div>
                       </form>
                     </td>
                   </td>
+                ) : (
+                  ''
                 )}
               </tr>
             ))}
           </tbody>
         </table>
+        <Link to={`/results/${categoryid}`}>
+          <button className="btn btn-success ml-3">Results</button>
+        </Link>
       </div>
     );
   }
@@ -158,6 +170,11 @@ const mapStateToProps = (state) => ({
   profiles: state.profiles.profiles,
 });
 
-export default connect(mapStateToProps, { getquestions, addresult, editquestion, addactivitylogs, getprofiles, updatelearned })(
-  TakeLesson,
-);
+export default connect(mapStateToProps, {
+  getquestions,
+  addresult,
+  editquestion,
+  addactivitylogs,
+  getprofiles,
+  updatelearned,
+})(TakeLesson);
