@@ -1,17 +1,56 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getquestions } from '../../actions/question';
+import { getquestions, editquestion } from '../../actions/question';
+import { addresult } from '../../actions/results';
+import { loadUser } from '../../actions/auth';
 
 export class TakeLesson extends Component {
+  state = {
+    useranswer: '',
+    correctanswer: '',
+    category: '',
+    question: '',
+    iscorrect: '',
+  };
+
   static propTypes = {
+    auth: PropTypes.object.isRequired,
     questions: PropTypes.array.isRequired,
     getquestions: PropTypes.func.isRequired,
+    addresult: PropTypes.func.isRequired,
+    editquestion: PropTypes.func.isRequired,
   };
-  
+
   componentDidMount() {
     this.props.getquestions();
   }
+
+  onChange = (e) =>
+    this.setState({
+      useranswer: e.target.name,
+      correctanswer: e.target.value,
+      question: e.target.id,
+    });
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    const category = this.props.match.params.id;
+    const { useranswer, correctanswer, question } = this.state;
+    const iscorrect = useranswer === correctanswer ? '1' : '0';
+    const result = { useranswer, correctanswer, category, question, iscorrect };
+    this.props.addresult(result);
+    const id = question;
+    this.props.editquestion({ id });
+    this.setState({
+      useranswer: '',
+      correctanswer: '',
+      category: '',
+      question: '',
+      iscorrect: '',
+    });
+    console.log(result);
+  };
 
   render() {
     const categoryid = this.props.match.params.id;
@@ -26,17 +65,72 @@ export class TakeLesson extends Component {
               <th>Question</th>
             </tr>
           </thead>
-          <tbody className='text-center'>
+          <tbody className="text-center">
+            {/* {console.log(this.props.questions?.[1]?.name)} */}
             {this.props.questions.map((question) => (
               <tr key={question.id}>
                 {`${question.categoryid}` === `${categoryid}` && (
                   <td>
                     <td>{question.name}</td>
                     <td className="d-flex align-items-center col-10">
-                      <button className="btn btn-danger btn-sm mx-5">A. {question.choiceA}</button>
-                      <button className="btn btn-danger btn-sm mx-5">B. {question.choiceB}</button>
-                      <button className="btn btn-danger btn-sm mx-5">C. {question.choiceC}</button>
-                      <button className="btn btn-danger btn-sm mx-5">D. {question.choiceD}</button>
+                      <form onSubmit={this.onSubmit}>
+                        <div className="radio">
+                          <label>
+                            <input
+                              type="radio"
+                              name={question.choiceA}
+                              value={question.correct}
+                              id={question.id}
+                              onChange={this.onChange}
+                            />
+                            A. {question.choiceA}
+                          </label>
+                        </div>
+                        <div className="radio">
+                          <label>
+                            <input
+                              type="radio"
+                              name={question.choiceB}
+                              value={question.correct}
+                              id={question.id}
+                              onChange={this.onChange}
+                            />
+                            B. {question.choiceB}
+                          </label>
+                        </div>
+                        <div className="radio">
+                          <label>
+                            <input
+                              type="radio"
+                              name={question.choiceC}
+                              value={question.correct}
+                              id={question.id}
+                              onChange={this.onChange}
+                            />
+                            C. {question.choiceC}
+                          </label>
+                        </div>
+                        <div className="radio">
+                          <label>
+                            <input
+                              type="radio"
+                              name={question.choiceD}
+                              value={question.correct}
+                              id={question.id}
+                              onChange={this.onChange}
+                            />
+                            D. {question.choiceD}
+                          </label>
+                        </div>
+                        <div className="form-group">
+                          <button
+                            type="submit"
+                            className="btn btn-primary"
+                          >
+                            Submit
+                          </button>
+                        </div>
+                      </form>
                     </td>
                   </td>
                 )}
@@ -51,6 +145,9 @@ export class TakeLesson extends Component {
 
 const mapStateToProps = (state) => ({
   questions: state.questions.questions,
+  auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getquestions })(TakeLesson);
+export default connect(mapStateToProps, { getquestions, addresult, editquestion, loadUser })(
+  TakeLesson,
+);

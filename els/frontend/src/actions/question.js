@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createMessage, returnErrors } from './messages';
 import { tokenConfig } from '../utils/helpers/authHelper';
 
-import { ADD_question, GET_questions } from './types';
+import { ADD_question, GET_questions, EDIT_question } from './types';
 
 // ADD question
 export const addquestion = (question) => (dispatch, getState) => {
@@ -30,3 +30,18 @@ export const getquestions = () => (dispatch, getState) => {
     })
     .catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 };
+
+// EDIT question
+export const editquestion = (question) => (dispatch, getState) => {
+  axios
+    .patch(`/api/questions/${question.id}/`, question, tokenConfig(getState))
+    .then((res) => {
+      dispatch(createMessage({ editquestion: 'question Edit' }));
+      dispatch({
+        type: EDIT_question,
+        payload: res.data,
+      });
+    })
+    .catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
