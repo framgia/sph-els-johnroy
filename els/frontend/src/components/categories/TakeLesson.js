@@ -65,6 +65,9 @@ export class TakeLesson extends Component {
       iscorrect: '',
       name: '',
     });
+    window.setTimeout(function () {
+      window.location.reload();
+    });
   };
 
   render() {
@@ -74,92 +77,86 @@ export class TakeLesson extends Component {
       <div>
         <div className="row mt-3">
           <h2 className="col-10">QUIZ {categoryid}</h2>
+          <Link to={`/results/${categoryid}`}>
+            <button className="btn btn-success ml-3">Results</button>
+          </Link>
         </div>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Question</th>
-            </tr>
-          </thead>
-          <tbody className="text-center">
-            {this.props.questions.map((question) => (
-              <tr key={question.id}>
-                {(`${question.categoryid}` === `${categoryid}`) &
-                (`${question.userid}` !== `${userid}`) ? (
-                  <td>
-                    <td>{question.name}</td>
-                    <td className="d-flex align-items-center col-10">
-                      <form onSubmit={this.onSubmit}>
-                        <div className="radio">
-                          <label>
-                            <input
-                              type="radio"
-                              name={question.choiceA}
-                              value={question.correct}
-                              id={question.id}
-                              placeholder={question.name}
-                              onChange={this.onChange}
-                            />
-                            A. {question.choiceA}
-                          </label>
-                        </div>
-                        <div className="radio">
-                          <label>
-                            <input
-                              type="radio"
-                              name={question.choiceB}
-                              value={question.correct}
-                              id={question.id}
-                              placeholder={question.name}
-                              onChange={this.onChange}
-                            />
-                            B. {question.choiceB}
-                          </label>
-                        </div>
-                        <div className="radio">
-                          <label>
-                            <input
-                              type="radio"
-                              name={question.choiceC}
-                              value={question.correct}
-                              id={question.id}
-                              placeholder={question.name}
-                              onChange={this.onChange}
-                            />
-                            C. {question.choiceC}
-                          </label>
-                        </div>
-                        <div className="radio">
-                          <label>
-                            <input
-                              type="radio"
-                              name={question.choiceD}
-                              value={question.correct}
-                              id={question.id}
-                              placeholder={question.name}
-                              onChange={this.onChange}
-                            />
-                            D. {question.choiceD}
-                          </label>
-                        </div>
-                        <div className="form-group">
-                          <button type="submit" className="btn btn-primary">
-                            Submit
-                          </button>
-                        </div>
-                      </form>
-                    </td>
-                  </td>
-                ) : (
-                  ''
-                )}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <Link to={`/results/${categoryid}`}>
-          <button className="btn btn-success ml-3">Results</button>
-        </Link>
+        {this.props.questions.map((question) => (
+          <div className="col-md-8 offset-md-2 pl-5" key={question.id}>
+            {(`${question.categoryid}` === `${categoryid}`) &
+            (`${question.userid}` !== `${userid}`) ? (
+              <div className="card mb-5 center" style={{ width: '30rem', height: '20rem' }}>
+                <div className="card-header font-weight-bold">QUESTION</div>
+                <div className="card-body">
+                  <h5 className="card-title">{question.name}</h5>
+                  <p className="card-body text-right">
+                    <form onSubmit={this.onSubmit}>
+                      <div className="radio">
+                        <label>
+                          <input
+                            type="radio"
+                            name={question.choiceA}
+                            value={question.correct}
+                            id={question.id}
+                            placeholder={question.name}
+                            onChange={this.onChange}
+                          />
+                          A. {question.choiceA}
+                        </label>
+                      </div>
+                      <div className="radio">
+                        <label>
+                          <input
+                            type="radio"
+                            name={question.choiceB}
+                            value={question.correct}
+                            id={question.id}
+                            placeholder={question.name}
+                            onChange={this.onChange}
+                          />
+                          B. {question.choiceB}
+                        </label>
+                      </div>
+                      <div className="radio">
+                        <label>
+                          <input
+                            type="radio"
+                            name={question.choiceC}
+                            value={question.correct}
+                            id={question.id}
+                            placeholder={question.name}
+                            onChange={this.onChange}
+                          />
+                          C. {question.choiceC}
+                        </label>
+                      </div>
+                      <div className="radio">
+                        <label>
+                          <input
+                            type="radio"
+                            name={question.choiceD}
+                            value={question.correct}
+                            id={question.id}
+                            placeholder={question.name}
+                            onChange={this.onChange}
+                          />
+                          D. {question.choiceD}
+                        </label>
+                      </div>
+                      <div className="form-group">
+                        <button type="submit" className="btn btn-primary">
+                          Submit
+                        </button>
+                      </div>
+                    </form>
+                  </p>
+                </div>
+              </div>
+            ) : (
+              ''
+            )}
+          </div>
+        ))}
       </div>
     );
   }
