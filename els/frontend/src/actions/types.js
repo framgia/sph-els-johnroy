@@ -19,6 +19,7 @@ export const EDIT_question = 'EDIT_question';
 export const GET_profiles = 'GET_profiles';
 export const GET_userlists = 'GET_userlists';
 export const GET_activitylogs = 'GET_activitylogs';
+export const ADD_activitylog = 'ADD_activitylog';
 export const EDIT_profile = 'EDIT_profile';
 export const GET_results = 'GET_results';
 export const ADD_result = 'ADD_result';
