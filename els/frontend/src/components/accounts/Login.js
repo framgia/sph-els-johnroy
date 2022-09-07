@@ -26,10 +26,6 @@ export class Login extends Component {
     if (this.props.isAuthenticated) {
       return <Redirect to="/" />;
     }
-    if(!window.location.hash.includes("#v2")) {
-      window.location.href += "#v2";
-      window.location.reload()
-  }
     const { username, password } = this.state;
     return (
       <div className="col-md-6 m-auto">
