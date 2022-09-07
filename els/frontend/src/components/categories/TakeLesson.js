@@ -66,6 +66,9 @@ export class TakeLesson extends Component {
       iscorrect: '',
       name: '',
     });
+    window.setTimeout(function () {
+      window.location.reload();
+    });
   };
 
   render() {
