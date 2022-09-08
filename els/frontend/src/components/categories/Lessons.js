@@ -37,6 +37,9 @@ export class Lessons extends Component {
                   <Link to={`/takelesson/${category.id}`}>
                     <button className="btn btn-danger btn-sm">Take Lesson</button>
                   </Link>
+                  <Link to={`/results/${category.id}`}>
+                    <button className="btn btn-success btn-sm">Result</button>
+                  </Link>
                 </td>
               </tr>
             ))}

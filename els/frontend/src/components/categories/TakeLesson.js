@@ -57,6 +57,7 @@ export class TakeLesson extends Component {
     }
     const id = question;
     this.props.editquestion({ id });
+    this.props.history.push(`/results/${category}`);
     this.setState({
       useranswer: '',
       correctanswer: '',
@@ -74,8 +75,8 @@ export class TakeLesson extends Component {
       <div>
         <div className="row mt-3">
           <h2 className="col-10">QUIZ {categoryid}</h2>
-          <Link to={`/results/${categoryid}`}>
-            <button className="btn btn-success ml-3">Results</button>
+          <Link to="/">
+            <button className="btn btn-warning ml-5">End Quiz</button>
           </Link>
         </div>
         {this.props.questions.map((question) => (
@@ -133,7 +134,7 @@ export class TakeLesson extends Component {
                             type="radio"
                             name={question.id}
                             value={question.correct}
-                            id={question.choiceC}
+                            id={question.choiceD}
                             placeholder={question.name}
                             onChange={this.onChange}
                           />
@@ -141,7 +142,7 @@ export class TakeLesson extends Component {
                         </label>
                       </div>
                       <div className="form-group">
-                        <button type="submit" className="btn btn-primary">
+                        <button type="submit" className="btn btn-info btn-sm">
                           Submit
                         </button>
                       </div>
