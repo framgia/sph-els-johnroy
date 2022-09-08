@@ -17,6 +17,7 @@ export const ADD_question = 'ADD_question';
 export const GET_questions = 'GET_questions';
 export const EDIT_question = 'EDIT_question';
 export const GET_profiles = 'GET_profiles';
+export const GET_viewprofile = 'GET_viewprofile';
 export const EDIT_learned = 'EDIT_learned';
 export const GET_userlists = 'GET_userlists';
 export const GET_activitylogs = 'GET_activitylogs';

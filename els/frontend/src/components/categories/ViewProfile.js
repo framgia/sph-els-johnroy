@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getprofiles } from '../../actions/profiles';
+import { viewprofile } from '../../actions/profiles';
 import { getactivitylogs } from '../../actions/activitylogs';
-import { Link } from 'react-router-dom';
 
-export class dashboard extends Component {
+export class ViewProfile extends Component {
   static propTypes = {
-    getprofiles: PropTypes.func.isRequired,
-    activitylogs: PropTypes.array.isRequired,
-    getactivitylogs: PropTypes.func.isRequired,
+    viewprofile: PropTypes.func.isRequired,
   };
-
   componentDidMount() {
-    this.props.getprofiles();
+    const id = this.props.match.params.id;
+    this.props.viewprofile(id);
     this.props.getactivitylogs();
   }
 
@@ -21,7 +18,7 @@ export class dashboard extends Component {
     return (
       <div>
         <div className="row mt-3">
-          <h2 className="col-10">Dashboard</h2>
+          <h2 className="col-10">User Profile</h2>
         </div>
         <div className="row">
           <div className="card mr-5" style={{ width: '18rem' }}>
@@ -31,13 +28,11 @@ export class dashboard extends Component {
               alt="Card image"
             ></img>
             <div className="card-body">
-                <div className="text-center">
-                  <h3 className="text-center">{this.props.profiles?.[0]?.user?.username}</h3>
-                  <p>Words Learned: {this.props.profiles?.[0]?.wordslearned}</p>
-                  <Link to={`/editprofile/${this.props.profiles?.[0]?.id}`}>
-                    <button className="btn btn-primary btn-sm">Edit Profile</button>
-                  </Link>
-                </div>
+              <div className="text-center">
+                <h3 className="text-center">{this.props.profiles?.user?.username}</h3>
+                <p>Words Learned: {this.props.profiles?.wordslearned}</p>
+                <button className="btn btn-primary btn-sm">Follow</button>
+              </div>
             </div>
           </div>
           <div className="card" style={{ width: '50rem', height: '15rem' }}>
@@ -45,11 +40,13 @@ export class dashboard extends Component {
             <div className="card-body">
               {this.props.activitylogs.map((activitylog) => (
                 <div key={activitylog.id}>
-                  {activitylog.owner.username === this.props.profiles?.[0]?.user?.username ? 
+                  {activitylog.owner.username === this.props.profiles?.user?.username ? (
                     <h5 className="card-title text-center">
                       {activitylog.owner.username} {activitylog.message}
                     </h5>
-                  :"" }
+                  ) : (
+                    ''
+                  )}
                 </div>
               ))}
             </div>
@@ -66,6 +63,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  getprofiles,
+  viewprofile,
   getactivitylogs,
-})(dashboard);
+})(ViewProfile);

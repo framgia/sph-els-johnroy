@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getuserlists } from '../../actions/profiles';
+import { getuserlists, viewprofile } from '../../actions/profiles';
+import { Link } from 'react-router-dom';
 
 export class profiles extends Component {
   static propTypes = {
@@ -22,7 +23,7 @@ export class profiles extends Component {
         <table className="table table-striped">
           <thead>
             <tr>
-            <th>ID</th>
+              <th>ID</th>
               <th>Avatar</th>
               <th>Username</th>
               <th>Email</th>
@@ -33,7 +34,10 @@ export class profiles extends Component {
           <tbody>
             {this.props.profiles.map((profile) => (
               <tr key={profile.id}>
-                <td>{profile.id}</td>
+                <td>
+                  {' '}
+                  <Link to={`/viewprofile/${profile.id}`}>{profile.id}</Link>
+                </td>
                 <td>AVATAR</td>
                 <td>{profile.user.username}</td>
                 <td>{profile.user.email}</td>
@@ -48,9 +52,10 @@ export class profiles extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  profiles: state.profiles.profiles
+  profiles: state.profiles.profiles,
 });
 
 export default connect(mapStateToProps, {
-    getuserlists,
+  getuserlists,
+  viewprofile,
 })(profiles);

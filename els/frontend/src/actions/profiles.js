@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createMessage, returnErrors } from './messages';
 import { tokenConfig } from '../utils/helpers/authHelper';
 
-import { GET_profiles, GET_userlists, EDIT_profile, EDIT_learned } from './types';
+import { GET_profiles, GET_userlists, EDIT_profile, EDIT_learned, GET_viewprofile } from './types';
 
 // GET profiles
 export const getprofiles = () => (dispatch, getState) => {
@@ -24,6 +24,18 @@ export const getuserlists = () => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: GET_userlists,
+        payload: res.data,
+      });
+    })
+    .catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
+export const viewprofile = (id) => (dispatch, getState) => {
+  axios
+    .get(`/api/userlists/${id}/`, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: GET_viewprofile,
         payload: res.data,
       });
     })

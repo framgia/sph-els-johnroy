@@ -39,10 +39,10 @@ export class categories extends Component {
                 <td className="col-md-7">{category.message}</td>
                 <td className="d-flex align-items-center">
                   <Link to={`/addquestion/${category.id}`}>
-                    <button className="btn btn-danger btn-sm">Add Word</button>
+                    <button className="btn btn-success btn-sm">Add Word</button>
                   </Link>
                   <Link to={`/editcategory/${category.id}`}>
-                    <button className="btn btn-danger btn-sm">Edit</button>
+                    <button className="btn btn-warning btn-sm">Edit</button>
                   </Link>
                   <button
                     onClick={this.props.deletecategory.bind(this, category.id)}
