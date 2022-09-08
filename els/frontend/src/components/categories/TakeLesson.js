@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getquestions, editquestion } from '../../actions/question';
+import { addactivitylogs } from '../../actions/activitylogs';
 import { addresult } from '../../actions/results';
-import { loadUser } from '../../actions/auth';
+import { getprofiles, updatelearned } from '../../actions/profiles';
 
 export class TakeLesson extends Component {
   state = {
@@ -15,15 +16,16 @@ export class TakeLesson extends Component {
   };
 
   static propTypes = {
-    auth: PropTypes.object.isRequired,
     questions: PropTypes.array.isRequired,
     getquestions: PropTypes.func.isRequired,
     addresult: PropTypes.func.isRequired,
     editquestion: PropTypes.func.isRequired,
+    addactivitylogs: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
     this.props.getquestions();
+    this.props.getprofiles();
   }
 
   onChange = (e) =>
@@ -40,6 +42,16 @@ export class TakeLesson extends Component {
     const iscorrect = useranswer === correctanswer ? '1' : '0';
     const result = { useranswer, correctanswer, category, question, iscorrect };
     this.props.addresult(result);
+    if (iscorrect == 1) {
+      const message = `has learned the word "${correctanswer}"`;
+      const name = useranswer;
+      const log = { name, message };
+      this.props.addactivitylogs(log);
+      const id = this.props.profiles[0].id;
+      const wordslearned = this.props.profiles[0].wordslearned + 1;
+      const profile = { id, wordslearned };
+      this.props.updatelearned({ id, wordslearned });
+    }
     const id = question;
     this.props.editquestion({ id });
     this.setState({
@@ -143,9 +155,9 @@ export class TakeLesson extends Component {
 
 const mapStateToProps = (state) => ({
   questions: state.questions.questions,
-  auth: state.auth,
+  profiles: state.profiles.profiles,
 });
 
-export default connect(mapStateToProps, { getquestions, addresult, editquestion, loadUser })(
+export default connect(mapStateToProps, { getquestions, addresult, editquestion, addactivitylogs, getprofiles, updatelearned })(
   TakeLesson,
 );

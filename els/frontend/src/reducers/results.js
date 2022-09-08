@@ -1,4 +1,4 @@
-import { GET_result, ADD_results } from '../actions/types.js';
+import { GET_results, ADD_result } from '../actions/types.js';
 
 const initialState = {
   results: [],
@@ -6,12 +6,12 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_result:
+    case GET_results:
       return {
         ...state,
         results: action.payload,
       };
-    case ADD_results:
+    case ADD_result:
       return {
         ...state,
         results: [...state.results, action.payload],

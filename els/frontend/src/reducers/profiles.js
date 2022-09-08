@@ -21,7 +21,7 @@ export default function (state = initialState, action) {
         ...state,
         profiles: state.profiles.map((content, id) =>
           content.id === action.payload.id
-            ? { ...content, username: action.payload.username, email: action.payload.email, password: action.payload.password }
+            ? { ...content, username: action.payload.username, email: action.payload.email, password: action.payload.password, wordslearned: action.payload.wordslearned, }
             : content,
         ),
       };
