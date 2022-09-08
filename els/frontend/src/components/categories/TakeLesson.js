@@ -51,7 +51,6 @@ export class TakeLesson extends Component {
       const wordslearned = this.props.profiles[0].wordslearned + 1;
       const profile = { id, wordslearned };
       this.props.updatelearned({ id, wordslearned });
-      console.log(profile);
     }
     const id = question;
     this.props.editquestion({ id });
