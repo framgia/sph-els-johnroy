@@ -24,9 +24,9 @@ export class EditProfile extends Component {
       email: '',
       password: '',
     });
-    // window.setTimeout(function () {
-    //   location.href = '/';
-    // }, 750);
+    window.setTimeout(function () {
+      location.href = '/';
+    }, 750);
   };
 
   render() {
