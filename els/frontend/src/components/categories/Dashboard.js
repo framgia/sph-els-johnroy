@@ -33,48 +33,27 @@ export class dashboard extends Component {
             ></img>
             <div className="card-body">
               {this.props.profiles.map((profile) => (
-                <table className="table text-center" key={profile.id}>
-                  <thead>
-                    <tr>
-                      <th>
-                        <h3 className="text-center">{profile.user.username}</h3>
-                      </th>
-                      <th />
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Words Learned: {profile.wordslearned}</td>
-                      <td>Lessons Learned:{profile.lessonslearned}</td>
-                    </tr>
-                  </tbody>
+                <div className="text-center" key={profile.id}>
+                  <h3 className="text-center">{profile.user.username}</h3>
+                  <p>Words Learned: {profile.wordslearned}</p>
                   <Link to={`/editprofile/${profile.id}`}>
                     <button className="btn btn-primary btn-sm">Edit Profile</button>
                   </Link>
-                </table>
+                </div>
               ))}
             </div>
           </div>
           <div className="card" style={{ width: '50rem', height: '15rem' }}>
-            <table className="table text-center" style={{ width: '50rem', height: '15rem' }}>
-              <thead>
-                <tr>
-                  <th>
-                    <h3>ACTIVITIES</h3>
-                  </th>
-                  <th />
-                </tr>
-              </thead>
-              <tbody>
-                {this.props.activitylogs.map((activitylog) => (
-                  <tr key={activitylog.id}>
-                    <td>
-                      {activitylog.owner.username} {activitylog.message}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="card-header text-center font-weight-bold">ACTIVITY LOG</div>
+            <div className="card-body">
+              {this.props.activitylogs.map((activitylog) => (
+                <div key={activitylog.id}>
+                  <h5 className="card-title text-center">
+                    {activitylog.owner.username} {activitylog.message}
+                  </h5>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

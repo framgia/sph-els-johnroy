@@ -19,7 +19,13 @@ export class Lessons extends Component {
     return (
       <div>
         <div className="row mt-3">
-          <h2 className="col-10">RESULTS</h2>
+          <h2 className="col-9">RESULTS</h2>
+          <Link to={`/takelesson/${categoryid}`}>
+            <button className="btn btn-warning ml-3">Continue Quiz</button>
+          </Link>
+          <Link to="/">
+            <button className="btn btn-danger">End Quiz</button>
+          </Link>
         </div>
         {this.props.results.map((result) => (
           <div key={result.id}>
