@@ -12,7 +12,7 @@ class ResultViewSet(viewsets.ModelViewSet):
     serializer_class = ResultsSerializer
 
     def get_queryset(self):
-        return self.request.user.result.all()
+        return self.request.user.results.all()
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

@@ -14,6 +14,7 @@ import AddWord from './categories/AddWord';
 import categories from './categories/Categories';
 import Lessons from './categories/Lessons';
 import TakeLesson from './categories/TakeLesson';
+import Result from './categories/Result';
 import profiles from './categories/Profiles';
 import Alerts from './layout/Alerts';
 import Login from './accounts/Login';
@@ -57,6 +58,7 @@ class App extends Component {
                   <PrivateRoute exact path="/takelesson/:id" component={TakeLesson} />
                   <AdminRoute exact path="/editcategory/:id" component={EditCategory} />
                   <PrivateRoute exact path="/editprofile/:id" component={EditProfile} />
+                  <PrivateRoute exact path="/results/:id" component={Result} />
                 </Switch>
               </div>
             </Fragment>

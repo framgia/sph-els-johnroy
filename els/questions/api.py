@@ -9,9 +9,7 @@ class QuestionViewSet(viewsets.ModelViewSet):
         permissions.IsAuthenticated,
     ]
     serializer_class = QuestionsSerializer
-    def get_queryset(self):
-        queryset = question.objects.filter(~Q(userid=self.request.user.id))
-        return queryset
+    queryset = question.objects.all()
 
     def perform_update(self, serializer):
         user = {self.request.user.id}
