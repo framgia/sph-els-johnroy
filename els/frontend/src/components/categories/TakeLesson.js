@@ -32,9 +32,9 @@ export class TakeLesson extends Component {
 
   onChange = (e) =>
     this.setState({
-      useranswer: e.target.name,
+      useranswer: e.target.id,
       correctanswer: e.target.value,
-      question: e.target.id,
+      question: e.target.name,
       name: e.target.placeholder,
     });
 
@@ -65,9 +65,6 @@ export class TakeLesson extends Component {
       iscorrect: '',
       name: '',
     });
-    window.setTimeout(function () {
-      window.location.reload();
-    });
   };
 
   render() {
@@ -95,9 +92,9 @@ export class TakeLesson extends Component {
                         <label>
                           <input
                             type="radio"
-                            name={question.choiceA}
+                            name={question.id}
                             value={question.correct}
-                            id={question.id}
+                            id={question.choiceA}
                             placeholder={question.name}
                             onChange={this.onChange}
                           />
@@ -108,9 +105,9 @@ export class TakeLesson extends Component {
                         <label>
                           <input
                             type="radio"
-                            name={question.choiceB}
+                            name={question.id}
                             value={question.correct}
-                            id={question.id}
+                            id={question.choiceB}
                             placeholder={question.name}
                             onChange={this.onChange}
                           />
@@ -121,9 +118,9 @@ export class TakeLesson extends Component {
                         <label>
                           <input
                             type="radio"
-                            name={question.choiceC}
+                            name={question.id}
                             value={question.correct}
-                            id={question.id}
+                            id={question.choiceC}
                             placeholder={question.name}
                             onChange={this.onChange}
                           />
@@ -134,9 +131,9 @@ export class TakeLesson extends Component {
                         <label>
                           <input
                             type="radio"
-                            name={question.choiceD}
+                            name={question.id}
                             value={question.correct}
-                            id={question.id}
+                            id={question.choiceC}
                             placeholder={question.name}
                             onChange={this.onChange}
                           />
