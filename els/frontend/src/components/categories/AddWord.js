@@ -37,7 +37,7 @@ export class AddWord extends Component {
       categoryid: '',
     });
     window.setTimeout(function () {
-      location.href = '#/categories';
+      location.href = `#/viewcategory/${categoryid}`;
     }, 750);
   };
 

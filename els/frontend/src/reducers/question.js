@@ -1,4 +1,4 @@
-import { ADD_question, EDIT_question, GET_questions } from '../actions/types.js';
+import { ADD_question, EDIT_question, GET_questions, DELETE_question } from '../actions/types.js';
 
 const initialState = {
   questions: [],
@@ -24,6 +24,11 @@ export default function (state = initialState, action) {
             ? { ...content, name: action.payload.name, message: action.payload.message }
             : content,
         ),
+      };
+    case DELETE_question:
+      return {
+        ...state,
+        questions: state.questions.filter((question) => question.id !== action.payload),
       };
     default:
       return state;

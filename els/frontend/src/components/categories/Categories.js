@@ -38,8 +38,8 @@ export class categories extends Component {
                 <td>{category.name}</td>
                 <td className="col-md-7">{category.message}</td>
                 <td className="d-flex align-items-center">
-                  <Link to={`/addquestion/${category.id}`}>
-                    <button className="btn btn-success btn-sm">Add Word</button>
+                  <Link to={`/viewcategory/${category.id}`}>
+                    <button className="btn btn-success btn-sm">View Category</button>
                   </Link>
                   <Link to={`/editcategory/${category.id}`}>
                     <button className="btn btn-warning btn-sm">Edit</button>
