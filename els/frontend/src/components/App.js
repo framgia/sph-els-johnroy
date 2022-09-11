@@ -18,6 +18,7 @@ import Result from './categories/Result';
 import profiles from './categories/Profiles';
 import ViewProfile from './categories/ViewProfile';
 import ViewCategory from './categories/ViewCategory';
+import EditQuestion from './categories/EditQuestion';
 import Alerts from './layout/Alerts';
 import Login from './accounts/Login';
 import Register from './accounts/Register';
@@ -60,6 +61,7 @@ class App extends Component {
                   <PrivateRoute exact path="/lessons" component={Lessons} />
                   <PrivateRoute exact path="/takelesson/:id" component={TakeLesson} />
                   <AdminRoute exact path="/editcategory/:id" component={EditCategory} />
+                  <AdminRoute exact path="/editquestion/:id" component={EditQuestion} />
                   <AdminRoute exact path="/viewcategory/:id" component={ViewCategory} />
                   <PrivateRoute exact path="/editprofile/:id" component={EditProfile} />
                   <PrivateRoute exact path="/results/:id" component={Result} />

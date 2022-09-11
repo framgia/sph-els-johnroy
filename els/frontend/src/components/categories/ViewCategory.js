@@ -21,15 +21,18 @@ export class ViewCategory extends Component {
         <div className="row mt-3">
           <h2 className="col-10">QUIZ {categoryid} | ADMIN</h2>
           <Link to={`/addquestion/${categoryid}`}>
-            <button className="btn btn-success btn-sm">Add Questionaire</button>
+            <button className="btn btn-success btn-sm">Add Questionnaire</button>
           </Link>
         </div>
         {this.props.questions.map((question) => (
           <div className="col-md-8 offset-md-2 pl-5" key={question.id}>
-            {(`${question.categoryid}` === `${categoryid}`) ? (
+            {`${question.categoryid}` === `${categoryid}` ? (
               <div className="card mb-5 center" style={{ width: '30rem', height: '20rem' }}>
                 <div className="card-header font-weight-bold">
                   QUESTION{' '}
+                  <Link to={`/editquestion/${question.id}`}>
+                    <button className="btn btn-warning btn-sm float-right">Edit</button>
+                  </Link>
                   <button
                     onClick={this.props.deletequestion.bind(this, question.id)}
                     className="btn btn-danger btn-sm float-right"
