@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class result(models.Model):
     useranswer = models.CharField(max_length=100)
-    correctanswer = models.CharField(max_length=100, unique=True)
+    correctanswer = models.CharField(max_length=100)
     iscorrect = models.BooleanField(blank=True)
     owner = models.ForeignKey(
         User, related_name="results", on_delete=models.CASCADE, null=True)
