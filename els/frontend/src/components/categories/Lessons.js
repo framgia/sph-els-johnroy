@@ -35,7 +35,7 @@ export class Lessons extends Component {
                 <td className="col-md-7">{category.message}</td>
                 <td className="d-flex align-items-center">
                   <Link to={`/takelesson/${category.id}`}>
-                    <button className="btn btn-danger btn-sm">Take Lesson</button>
+                    <button className="btn btn-info btn-sm">Take Lesson</button>
                   </Link>
                   <Link to={`/results/${category.id}`}>
                     <button className="btn btn-success btn-sm">Result</button>

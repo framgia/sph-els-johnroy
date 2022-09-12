@@ -7,6 +7,7 @@ import profiles from './profiles';
 import activitylogs from './activitylogs';
 import questions from './question'
 import results from './results';
+import follows from './follows';
 
 export default combineReducers({
   categories,
@@ -17,4 +18,5 @@ export default combineReducers({
   activitylogs,
   questions,
   results,
+  follows,
 });

@@ -16,6 +16,7 @@ import Lessons from './categories/Lessons';
 import TakeLesson from './categories/TakeLesson';
 import Result from './categories/Result';
 import profiles from './categories/Profiles';
+import ViewProfile from './categories/ViewProfile';
 import Alerts from './layout/Alerts';
 import Login from './accounts/Login';
 import Register from './accounts/Register';
@@ -53,6 +54,7 @@ class App extends Component {
                   <AdminRoute exact path="/form" component={Form} />
                   <AdminRoute exact path="/addquestion/:id" component={AddWord} />
                   <PrivateRoute exact path="/userlist" component={profiles} />
+                  <PrivateRoute exact path="/viewprofile/:id" component={ViewProfile} />
                   <AdminRoute exact path="/categories" component={categories} />
                   <PrivateRoute exact path="/lessons" component={Lessons} />
                   <PrivateRoute exact path="/takelesson/:id" component={TakeLesson} />
