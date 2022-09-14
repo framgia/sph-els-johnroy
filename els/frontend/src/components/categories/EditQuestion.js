@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addquestion } from '../../actions/question';
-import { withRouter } from 'react-router';
+import { editquestion } from '../../actions/question';
 
 export class AddWord extends Component {
   state = {
@@ -12,21 +11,21 @@ export class AddWord extends Component {
     choiceC: '',
     choiceD: '',
     correct: '',
-    categoryid: '',
+    id: '',
   };
 
   static propTypes = {
-    addquestion: PropTypes.func.isRequired,
+    editquestion: PropTypes.func.isRequired,
   };
 
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = (e) => {
     e.preventDefault();
-    const categoryid = this.props.match.params.id;
+    const id = this.props.match.params.id;
     const { name, choiceA, choiceB, choiceC, choiceD, correct } = this.state;
-    const question = { name, choiceA, choiceB, choiceC, choiceD, correct, categoryid };
-    this.props.addquestion(question);
+    const question = { id, name, choiceA, choiceB, choiceC, choiceD, correct };
+    this.props.editquestion(question);
     this.setState({
       name: '',
       choiceA: '',
@@ -34,18 +33,18 @@ export class AddWord extends Component {
       choiceC: '',
       choiceD: '',
       correct: '',
-      categoryid: '',
+      id: '',
     });
     window.setTimeout(function () {
-      location.href = `#/viewcategory/${categoryid}`;
-    }, 750);
+      location.href = `#/categories`;
+    }, 150);
   };
 
   render() {
     const { name, choiceA, choiceB, choiceC, choiceD, correct } = this.state;
     return (
       <div className="card card-body mt-4 mb-4">
-        <h2>Add Questionnaire</h2>
+        <h2>Edit Questionnaire</h2>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Word</label>
@@ -118,4 +117,4 @@ export class AddWord extends Component {
   }
 }
 
-export default connect(null, { addquestion })(AddWord);
+export default connect(null, { editquestion })(AddWord);
