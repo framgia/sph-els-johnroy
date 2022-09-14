@@ -85,7 +85,6 @@ export class TakeLesson extends Component {
         <div className="row mt-3">
           <h2 className="col-10">QUIZ {categoryid}</h2>
         </div>
-        {console.log(questionaire)}
         {questionaire !== 0 ? (
           <div className="card mb-5 center" style={{ width: '30rem', height: '20rem' }}>
             <div className="card-header font-weight-bold">QUESTION</div>

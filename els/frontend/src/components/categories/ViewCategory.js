@@ -15,18 +15,18 @@ export class ViewCategory extends Component {
   }
 
   render() {
-    const categoryid = this.props.match.params.id;
+    const {id} = this.props.match.params;
     return (
       <div>
         <div className="row mt-3">
-          <h2 className="col-10">QUIZ {categoryid} | ADMIN</h2>
-          <Link to={`/addquestion/${categoryid}`}>
+          <h2 className="col-10">QUIZ {id} | ADMIN</h2>
+          <Link to={`/addquestion/${id}`}>
             <button className="btn btn-success btn-sm">Add Questionnaire</button>
           </Link>
         </div>
         {this.props.questions.map((question) => (
           <div className="col-md-8 offset-md-2 pl-5" key={question.id}>
-            {`${question.categoryid}` === `${categoryid}` ? (
+            {`${question.categoryid}` === `${id}` ? (
               <div className="card mb-5 center" style={{ width: '30rem', height: '20rem' }}>
                 <div className="card-header font-weight-bold">
                   QUESTION{' '}
